@@ -64,6 +64,19 @@ jQuery(document).ready(function($) {
          appendModalContent(dummy);
      });
 
+     $(".thank-you").click(()=>{
+         const dummy = $(".thankyou-dummy").clone().removeClass("hidden");
+         appendModalContent(dummy);
+     });
+
+     $("#modal").on('click','.tulis-komentar',()=>{
+         $("#kritikSaran").val("");
+     })
+
+     $(".tulis-komentar").click(()=>{
+         $("#kritikSaran").val("");
+     })
+
      $("#modal").on('click', '.proceed', (e)=>{
          const $this = $(e.target);
          const form = $this.closest(".modal-content").find("form");

@@ -10,16 +10,16 @@
             </div>
         </form>
         <div class="text-right">
-            <button class="btn btn-primary" type="button">Batal</button>
-            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#modal">Kirim</button>
+            <button class="btn btn-primary tulis-komentar" type="button">Batal</button>
+            <button class="btn btn-primary thank-you" type="button" data-toggle="modal" data-target="#modal">Kirim</button>
         </div>
 
         <div class="thankyou-dummy hidden">
             <div class="dummy-title"><span>Thank you!!</span></div>
             <div class="dummy-body">
-                <div class="row">
+                <div class="row text-center">
                     <div class="col">
-                        <img src="/assets/img/tq.png" alt="thankyou" style="width:200px;height:100px">
+                        <img src="/user/assets/img/tq.png" alt="thankyou" style="width:200px;height:100px">
                     </div>
                 </div>
                 <div class="row">
@@ -28,10 +28,10 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-dummy">
+            <div class="dummy-footer">
                 <div class="text-right">
-                    <button class="btn btn-primary" type="button">Kembalu ke home</button>
-                    <button class="btn btn-primary" type="button">Tulis komentar lainnya</button>
+                    <a href="/user"><button class="btn btn-primary" type="button">Kembalu ke home</button></a>
+                    <button class="btn btn-primary tulis-komentar" data-dismiss="modal" type="button">Tulis komentar lainnya</button>
                 </div>
             </div>
         </div>

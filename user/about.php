@@ -10,10 +10,10 @@
     </div>
     <div class="row">
         <div class="col text-center">
-            <img src="/assets/img/test1.png" alt="gambar1" style="width:300px;height:200px">
+            <img src="/user/assets/img/test1.png" alt="gambar1" style="width:300px;height:200px">
         </div>
         <div class="col text-center">
-            <img src="/assets/img/test1.png" alt="gambar2" style="width:300px;height:200px">
+            <img src="/user/assets/img/test1.png" alt="gambar2" style="width:300px;height:200px">
         </div>
     </div>
 
@@ -28,18 +28,18 @@
     </div>
     <div class="row">
         <div class="col text-center">
-            <img src="/assets/img/test1.png" alt="gambar3" style="width:200px;height:100px">
+            <img src="/user/assets/img/test1.png" alt="gambar3" style="width:200px;height:100px">
         </div>
         <div class="col text-center">
             <div class="row">
-                <img class="m-auto"src="/assets/img/test2.jpg" alt="gambar4" style="width:80%;height:50px">
+                <img class="m-auto"src="/user/assets/img/test2.jpg" alt="gambar4" style="width:80%;height:50px">
             </div>
             <div class="row ">
-                <img class="m-auto" src="/assets/img/test2.jpg" alt="gambar5" style="width:80%;height:50px">
+                <img class="m-auto" src="/user/assets/img/test2.jpg" alt="gambar5" style="width:80%;height:50px">
             </div>
         </div>
         <div class="col text-center">
-            <img src="/assets/img/test1.png" alt="gambar6" style="width:200px;height:100px">
+            <img src="/user/assets/img/test1.png" alt="gambar6" style="width:200px;height:100px">
         </div>
     </div>
 
