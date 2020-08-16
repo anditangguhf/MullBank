@@ -1,5 +1,8 @@
 .hidden { display: none; }
 .v-hidden { visibility: hidden; }
+.clickable {
+    cursor: pointer;
+}
 
 .home-banner {
     height: 350px;
