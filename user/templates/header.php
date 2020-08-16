@@ -21,7 +21,6 @@
 
         <script src="assets/script.js"></script>
         <link rel="stylesheet" href="assets/style.css">
-
     </head>
     <body class="d-flex flex-column h-100">
         <?php include 'navbar.php'; ?>

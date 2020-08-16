@@ -4,8 +4,8 @@ jQuery(document).ready(function($) {
      */
     _init = () => {
         $(".datatables").DataTable();
-        const pathname = window.location.pathname;
-        if(pathname !== "/") {
+        const pathname = '/user'+window.location.pathname;
+        if(pathname !== "/user") {
             let pageTitle = $(".page-title");
             switch (pathname) {
                 case "/about.php":
