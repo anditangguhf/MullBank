@@ -8,19 +8,19 @@ jQuery(document).ready(function($) {
         if(pathname !== "/user") {
             let pageTitle = $(".page-title");
             switch (pathname) {
-                case "/about.php":
+                case "/user/about.php":
                     pageTitle.html("About Us");
                     break;
-                case "/calculator.php":
+                case "/user/calculator.php":
                     pageTitle.html("Mull Calculator");
                     break;
-                case "/critics.php":
+                case "/user/critics.php":
                     pageTitle.html("Kritik & Saran");
                     break;
-                case "/locator.php":
+                case "/user/locator.php":
                     pageTitle.html("Location");
                     break;
-                case "/transaction.php":
+                case "/user/transaction.php":
                     pageTitle.html("Transaction History");
                     break;
             }
