@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en" dir="ltr" class="h-100">
     <head>
         <meta charset="utf-8">
         <title>Mull Bank</title>
@@ -14,10 +14,17 @@
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
 
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.21/css/dataTables.bootstrap4.min.css">
+        <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
+
         <script src="assets/script.js"></script>
         <link rel="stylesheet" href="assets/style.css">
 
     </head>
-    <body>
+    <body class="d-flex flex-column h-100">
         <?php include 'navbar.php'; ?>
-        <div class="container-fluid">
+        <div class="container my-3">
+            <div class="card border-0">
+                <h2 class="page-title"></h2>
+                <div class="card-body">

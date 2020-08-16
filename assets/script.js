@@ -1,4 +1,33 @@
 jQuery(document).ready(function($) {
+    /**
+     * Initialization scripts
+     */
+    _init = () => {
+        $(".datatables").DataTable();
+        const pathname = window.location.pathname;
+        if(pathname !== "/") {
+            let pageTitle = $(".page-title");
+            switch (pathname) {
+                case "/about.php":
+                    pageTitle.html("About Us");
+                    break;
+                case "/calculator.php":
+                    pageTitle.html("Mull Calculator");
+                    break;
+                case "/critics.php":
+                    pageTitle.html("Kritik & Saran");
+                    break;
+                case "/locator.php":
+                    pageTitle.html("Location");
+                    break;
+                case "/transaction.php":
+                    pageTitle.html("Transaction History");
+                    break;
+            }
+        }
+    }
+    _init();
+
     resetModal = () => {
         $(".modal-title, .modal-body, .modal-footer").empty();
     }

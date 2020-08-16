@@ -1,2 +1,10 @@
 .hidden { display: none; }
 .v-hidden { visibility: hidden; }
+
+.home-banner {
+    height: 350px;
+}
+
+.home-banner img {
+    height: 100%;
+}

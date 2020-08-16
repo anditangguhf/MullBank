@@ -1,4 +1,40 @@
 </div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="page-footer footer bg-dark mt-auto text-white pt-4">
+    <!-- Footer Links -->
+    <div class="container-fluid text-center text-md-left">
+        <!-- Grid row -->
+        <div class="row justify-content-center text-center">
+            <!-- Grid column -->
+            <div class="col-md-2 mb-md-0 mb-3">Facebook</div>
+            <!-- Grid column -->
+            <div class="col-md-2 mb-md-0 mb-3">Instagram</div>
+            <!-- Grid column -->
+            <div class="col-md-2 mb-md-0 mb-3">Line</div>
+            <!-- Grid column -->
+            <div class="col-md-2 mb-md-0 mb-3">Youtube</div>
+        </div>
+    </div>
+    <!-- Copyright -->
+    <div class="container-fluid text-center text-md-left py-3">
+        <div class="row justify-content-center text-center">
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">Saran dan Pendapat</div>
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3 border-left border-right">Bantuan</div>
+            <!-- Grid column -->
+            <div class="col-md-3 mb-md-0 mb-3">Syarat Penggunaan</div>
+        </div>
+    </div>
+</footer>
+<!-- <footer class="footer mt-auto py-3">
+  <div class="container">
+    <span class="text-muted">Place sticky footer content here.</span>
+  </div>
+</footer> -->
+
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">

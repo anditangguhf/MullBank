@@ -1,7 +1,12 @@
 <?php include 'templates/header.php'; ?>
 
-<div>
-    Test
+<div class="home-banner text-center">
+    <img src="/assets/img/logo.png" alt="Banner"/>
+</div>
+<div class="card-body text-center">
+    <p class="card-text">MullBank merupakan ...</p>
+    <p class="card-text">LET'S START TO<br/>MAKE CHANGE</p>
+    <button type="button" class="btn btn-primary sign-up" data-toggle="modal" data-target="#modal">Join w/ Us</button>
 </div>
 
 <!-- Modal dummies -->

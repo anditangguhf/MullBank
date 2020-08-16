@@ -7,19 +7,19 @@
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/pages/calculator.php">C</a>
+                <a class="nav-link" href="/calculator.php">C</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/transaction-history.php">T</a>
+                <a class="nav-link" href="/transaction.php">T</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/critics.php">K&S</a>
+                <a class="nav-link" href="/critics.php">K&S</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/about.php">AU</a>
+                <a class="nav-link" href="/about.php">AU</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/pages/locator.php">L</a>
+                <a class="nav-link" href="/locator.php">L</a>
             </li>
         </ul>
         <form class="form-inline mr-2">
