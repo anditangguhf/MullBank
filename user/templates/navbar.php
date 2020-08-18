@@ -1,5 +1,6 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <a class="navbar-brand" href="/user">H</a>
+    <a class="navbar-brand navbarItems" href="/user" id="homeNavBar"><i class="fas fa-home"></i></a>
+    <div class="d-none text-white mr-3" id="homeNavBarFont">Home</div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -7,19 +8,24 @@
     <div class="collapse navbar-collapse" id="navbar">
         <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-                <a class="nav-link" href="/user/calculator.php">C</a>
+                <a class="nav-link navbarItems" href="/user/calculator.php" id="calcNavBar"><i class="fas fa-calculator"></i></a>
+                <span class="d-none text-white mr-3" id="calcNavBarFont">Mull Kalkulator</span>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/transaction.php">T</a>
+                <a class="nav-link navbarItems" href="/user/transaction.php" id="transNavBar"><i class="fas fa-money-check"></i></a>
+                <div class="d-none text-white mr-3" id="transNavBarFont">Transaksi</div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/critics.php">K&S</a>
+                <a class="nav-link navbarItems" href="/user/critics.php" id="ksNavBar"><i class="fas fa-star"></i></a>
+                <div class="d-none text-white mr-3" id="ksNavBarFont">Kritik & Saran</div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/about.php">AU</a>
+                <a class="nav-link navbarItems" href="/user/about.php" id="aboutNavBar"><i class="fas fa-info-circle"></i></a>
+                <div class="d-none text-white mr-3" id="aboutNavBarFont">Tentang Kami</div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/user/locator.php">L</a>
+                <a class="nav-link navbarItems" href="/user/locator.php" id="locNavBar"><i class="fas fa-map-marked-alt"></i></a>
+                <div class="d-none text-white mr-3" id="locNavBarFont">Lokasi</div>
             </li>
         </ul>
         <form class="form-inline mr-2">

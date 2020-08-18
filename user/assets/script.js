@@ -93,5 +93,18 @@ jQuery(document).ready(function($) {
 
      });
 
+     
+     $(".navbarItems").mouseover(function(){
+        var navbarFont="#"+this.id+"Font";
+        $(navbarFont).removeClass("d-none");
+        $(navbarFont).addClass("d-inline-block");
+    })
+    
+    $(".navbarItems").mouseleave(function(){
+        var navbarFont="#"+this.id+"Font";
+        $(navbarFont).removeClass("d-inline-block");
+        $(navbarFont).addClass("d-none");
+    })
+
 
 })
