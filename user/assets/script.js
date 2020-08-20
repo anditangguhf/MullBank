@@ -106,4 +106,21 @@ jQuery(document).ready(function($) {
         $(navbarFont).removeClass("d-inline-block");
         $(navbarFont).addClass("d-none");
     })
+
+    $(".calc-count").click(()=>{
+        let tbd = $(".calc-table tbody");
+        // tbd.empty();
+        const form = $(".calc-form");
+        if(form.find("#jenisBarang").val() === null) {
+            alert("Mohon pilih jenis barang terlebih dahulu!");
+        } else {
+            const jb = form.find("#jenisBarang");
+            const berat = form.find("#berat");
+            let calculate = parseInt(jb.val()) * parseInt(berat.val());
+            tbd.find('#ct-jenis').html(jb.find("option:selected").text());
+            tbd.find('#ct-harga').html(jb.val());
+            tbd.find('#ct-berat').html(berat.val());
+            tbd.find('#ct-total').html(calculate);
+        }
+    })
 })
