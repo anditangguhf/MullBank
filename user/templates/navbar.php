@@ -42,6 +42,11 @@
             <button type="button" class="btn btn-sm btn-primary log-in" data-toggle="modal" data-target="#modal">Log In</button>
         </form>
         <?php
+    }else{
+        ?>
+        <button id="buttonLogout" class="btn btn-sm btn-primary">Log Out</button>
+
+        <?php
     }?>
 
     </div>

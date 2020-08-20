@@ -1,4 +1,3 @@
-<script>
 jQuery(document).ready(function($) {
     /**
      * Initialization scripts
@@ -70,29 +69,6 @@ jQuery(document).ready(function($) {
      $(".thank-you").click(()=>{
          const dummy = $(".thankyou-dummy").clone().removeClass("hidden");
          appendModalContent(dummy);
-
-         var str= $("#kritikSaran").val();
-         <?php
-            if(isset($_SESSION['userid'])){
-                ?>
-                var idUser="<?php echo $_SESSION['userid'];?>";
-                <?php
-            }
-         ?>
-         // var idUser = "<php if(isset($_SESSION['userid'])){echo $_SESSION['userid']};?>";
-         console.log(str,idUser);
-
-         $.ajax({
-             url:"<?php echo constant("BASE_URL") ?>/ajax.php",
-             type:'post',
-             data:{
-                 act: 'kritiksaran',
-                 textbox: str,
-             },
-             success:function(res){
-                 console.log(res);
-             },
-         })
      });
 
      $("#modal").on('click','.tulis-komentar',()=>{
@@ -116,7 +92,7 @@ jQuery(document).ready(function($) {
                 data['password']=$("#passwordLogin").val();
 
                 // console.log(data);
-                doAjax("<?php echo constant("BASE_URL") ?>/assets/ajax.php", data, function(response){
+                doAjax('assets/ajax.php', data, function(response){
                     console.log(response);
                     if(response["status"]==-1){
                         alert(response["message"]);
@@ -127,30 +103,7 @@ jQuery(document).ready(function($) {
                 })
                 break;
              case 'signup':
-                if($("#password").val()!=$("#confirm_pass").val()){
-                    alert("Password dan Konfirmasi Password tidak sama");
-                    break;
-                }
-                var data={};
 
-                data['act']='signup';
-                data['nama_lengkap']=$("#nama_lengkap").val();
-                data['username']=$("#nama_akun").val();
-                data['mobile_number']=$("#handphone").val();
-                data['email']=$("#email").val();
-                data['password']=$("#password").val();
-                data['address']=$("#alamat").val();
-
-                // console.log(data);
-                doAjax("<?php echo constant("BASE_URL") ?>/assets/ajax.php", data, function(response){
-                    console.log(response);
-                    // if(response["status"]==-1){
-                    //     alert(response["message"]);
-                    // }
-                    // else{
-                    //     location.reload();
-                    // }
-                })
                  break;
 
          }
@@ -184,22 +137,4 @@ jQuery(document).ready(function($) {
         $(navbarFont).removeClass("d-inline-block");
         $(navbarFont).addClass("d-none");
     })
-
-    $(".calc-count").click(()=>{
-        let tbd = $(".calc-table tbody");
-        // tbd.empty();
-        const form = $(".calc-form");
-        if(form.find("#jenisBarang").val() === null) {
-            alert("Mohon pilih jenis barang terlebih dahulu!");
-        } else {
-            const jb = form.find("#jenisBarang");
-            const berat = form.find("#berat");
-            let calculate = parseInt(jb.val()) * parseInt(berat.val());
-            tbd.find('#ct-jenis').html(jb.find("option:selected").text());
-            tbd.find('#ct-harga').html(jb.val());
-            tbd.find('#ct-berat').html(berat.val());
-            tbd.find('#ct-total').html(calculate);
-        }
-    })
 })
-</script>

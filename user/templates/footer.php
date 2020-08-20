@@ -75,8 +75,8 @@
                 <input type="text" class="form-control form-control-sm" name="nama_lengkap" id="nama_lengkap"/>
             </div>
             <div class="form-group">
-                <label for="nama_lengkap">Nama Akun</label>
-                <input type="text" class="form-control form-control-sm" name="nama_lengkap" id="nama_lengkap"/>
+                <label for="nama_akun">Nama Akun</label>
+                <input type="text" class="form-control form-control-sm" name="nama_akun" id="nama_akun"/>
             </div>
             <div class="form-group">
                 <label for="handphone">No. Handphone</label>
