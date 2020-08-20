@@ -33,6 +33,7 @@
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel"></h5>
@@ -49,21 +50,20 @@
 <!-- Modal dummies -->
 <div class="login-dummy hidden">
     <div class="dummy-title"><span>Log In</span></div>
-    <div class="dummy-body">
-        <form>
+        <div class="dummy-body">
+            <input type="hidden" name="act" value="login"/>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control form-control-sm" name="username" id="username"/>
+                <input type="text" class="form-control form-control-sm" name="username" id="usernameLogin"/>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control form-control-sm" name="password" id="password"/>
+                <input type="password" class="form-control form-control-sm" name="password" id="passwordLogin"/>
             </div>
-        </form>
-    </div>
-    <div class="dummy-footer">
-        <button class="btn btn-sm btn-primary proceed" act="login">Log In</button>
-    </div>
+        </div>
+        <div class="dummy-footer">
+            <button class="btn btn-sm btn-primary proceed" act="login">Login</button>
+        </div>
 </div>
 
 <div class="signup-dummy hidden">
