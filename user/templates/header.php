@@ -26,6 +26,9 @@ session_start();
         <link rel="stylesheet" href="/user/assets/style.css">
 
         <?php
+        $burl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://":"http://") . $_SERVER['HTTP_HOST'] . "/user";
+        define("BASE_URL", $burl);
+
         include_once('assets/script.php');
         include_once('assets/db.php');
         ?>
