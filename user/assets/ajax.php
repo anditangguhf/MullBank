@@ -7,6 +7,10 @@ if(isset($_POST['act'])) {
             echo json_encode(['data' => 'kontol']);
             break;
 
+        case 'kritiksaran':
+            echo json_encode(['data' => $_POST['textbox']]);
+            break;
+
         case 'login':
             // echo json_encode($_POST);
             $data=array();

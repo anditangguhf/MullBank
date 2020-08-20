@@ -1,3 +1,4 @@
+<script>
 jQuery(document).ready(function($) {
     /**
      * Initialization scripts
@@ -71,7 +72,8 @@ jQuery(document).ready(function($) {
          appendModalContent(dummy);
 
          var str= $("#kritikSaran").val();
-         console.log(str);
+         var idUser = "<?php echo $_SESSION['userid'];?>";
+         console.log(str,idUser);
 
          $.ajax({
              url:"assets/ajax.php",
@@ -82,7 +84,7 @@ jQuery(document).ready(function($) {
              },
              success:function(res){
                  console.log(res);
-             }
+             },
          })
      });
 
@@ -137,3 +139,4 @@ jQuery(document).ready(function($) {
         $(navbarFont).addClass("d-none");
     })
 })
+</script>

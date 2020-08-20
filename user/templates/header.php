@@ -1,4 +1,4 @@
-<?php error_reporting(E_ALL); ini_set('display_errors', 1); 
+<?php error_reporting(E_ALL); ini_set('display_errors', 1);
 session_start();
 ?>
 <!DOCTYPE html>
@@ -22,10 +22,13 @@ session_start();
         <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-        <script src="/user/assets/script.js"></script>
+        <!-- <script src=""></script> -->
         <link rel="stylesheet" href="/user/assets/style.css">
 
-        <?php include_once('assets/db.php'); ?>
+        <?php
+        include_once('assets/script.php');
+        include_once('assets/db.php');
+        ?>
     </head>
     <body class="d-flex flex-column h-100">
         <?php include 'navbar.php'; ?>
