@@ -4,10 +4,6 @@ session_start();
 
 if(isset($_POST['act'])) {
     switch ($_POST['act']) {
-        case 'getJenisBarang':
-            echo json_encode(['data' => 'kontol']);
-            break;
-
         case 'kritiksaran':
             echo json_encode(['data' => $_POST['textbox']]);
             break;
@@ -62,8 +58,11 @@ if(isset($_POST['act'])) {
 	        }
             break;
 
-<<<<<<< 5adde08de1ffd8e93bf10f0cd627331da9da015c
-=======
+        case 'getInvoiceDetail':
+            $oid = $_POST['order_id'];
+            $invoice = $conn->query("SELECT * FROM tbl_order_item WHERE order_id='$oid'");
+            echo json_encode($invoice->fetch_all(MYSQLI_ASSOC));
+            break;
         case 'signup':
             echo var_dump($_POST);
             $username=$_POST["username"];
@@ -97,8 +96,6 @@ if(isset($_POST['act'])) {
                 echo json_encode($data);
             }
             break;
->>>>>>> Add Signout and Signup features
-
         default:
             echo json_encode(['data' => 'No Data!']);
             break;
