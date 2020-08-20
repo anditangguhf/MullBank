@@ -46,6 +46,18 @@ $transactions = $conn->query("SELECT * FROM `tbl_order` WHERE `order_receiver_na
                         </tr>
                     </thead>
                     <tbody>
+                        <?php
+                        while($row = $transactions->fetch_assoc()) {
+                            ?>
+                            <tr>
+                                <td><?php $row['order_no'] ?></td>
+                                <td><?php $row['order_date'] ?></td>
+                                <td><?php $row['order_total_after_tax'] ?></td>
+                                <td></td>
+                            </tr>
+                            <?php
+                        }
+                        ?>
                     </tbody>
                 </table>
             </div>

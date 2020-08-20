@@ -22,7 +22,7 @@ session_start();
         <script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
 
-        <!-- <script src=""></script> -->
+        <!-- <script src="/user/assets/script.js"></script> -->
         <link rel="stylesheet" href="/user/assets/style.css">
 
         <?php
