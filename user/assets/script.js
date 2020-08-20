@@ -69,6 +69,21 @@ jQuery(document).ready(function($) {
      $(".thank-you").click(()=>{
          const dummy = $(".thankyou-dummy").clone().removeClass("hidden");
          appendModalContent(dummy);
+
+         var str= $("#kritikSaran").val();
+         console.log(str);
+
+         $.ajax({
+             url:"assets/ajax.php",
+             type:'post',
+             data:{
+                 act: 'kritiksaran',
+                 textbox: str,
+             },
+             success:function(res){
+                 console.log(res);
+             }
+         })
      });
 
      $("#modal").on('click','.tulis-komentar',()=>{
