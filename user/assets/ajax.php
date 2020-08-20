@@ -1,8 +1,13 @@
 <?php
 require_once("db.php");
+session_start();
 
 if(isset($_POST['act'])) {
     switch ($_POST['act']) {
+        case 'getJenisBarang':
+            echo json_encode(['data' => 'kontol']);
+            break;
+
         case 'kritiksaran':
             echo json_encode(['data' => $_POST['textbox']]);
             break;
@@ -35,9 +40,9 @@ if(isset($_POST['act'])) {
 	        	$query = "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1";
 	        	$results = mysqli_query($conn, $query);
 
-	        	if (mysqli_num_rows($results) == 1) { // user found
+                if (mysqli_num_rows($results) == 1) { // user found
+                    
                     // check if user is admin or user
-                    session_start();
 	        		$logged_in_user = mysqli_fetch_assoc($results);
 	        		$_SESSION['user'] = $logged_in_user;
 	        		$_SESSION['success']  = "You are now logged in";
@@ -57,11 +62,40 @@ if(isset($_POST['act'])) {
 	        }
             break;
 
-        case 'getInvoiceDetail':
-            $oid = $_POST['order_id'];
-            $invoice = $conn->query("SELECT * FROM tbl_order_item WHERE order_id='$oid'");
-            echo json_encode($invoice->fetch_all(MYSQLI_ASSOC));
+        case 'signup':
+            echo var_dump($_POST);
+            $username=$_POST["username"];
+            $nama_lengkap=$_POST["nama_lengkap"];
+            $email=$_POST["email"];
+            $user_type="user";
+            $password=md5($_POST["password"]);
+            $mobile_number=$_POST["mobile_number"];
+            $address=$_POST["address"];
+            $id_location=0;
+            $sql = "INSERT INTO users (username, nama_lengkap, email, user_type, password, mobile_number, address, id_locations)
+            VALUES ('$username', '$nama_lengkap', '$email', '$user_type', '$password', '$mobile_number', '$address', '$id_location')";
+
+            echo var_dump($sql);
+            if ($conn->query($sql) === TRUE) {
+              echo "New record created successfully";
+            } else {
+              echo "Error: " . $sql . "<br>" . $conn->error;
+            }
             break;
+
+        case 'logout':
+            session_destroy();
+            if(!isset($_SESSION["iduser"])){
+                $data["status"]=1;
+                echo json_encode($data);
+            }
+            else{
+                $data["status"]=-1;
+                $data["message"]="Error while destroying the session";
+                echo json_encode($data);
+            }
+            break;
+
         default:
             echo json_encode(['data' => 'No Data!']);
             break;

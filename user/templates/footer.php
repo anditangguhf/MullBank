@@ -32,7 +32,8 @@
 
 <!-- Modal -->
 <div class="modal fade" id="modal" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-dialog modal-dialog-centered">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel"></h5>
@@ -74,8 +75,8 @@
                 <input type="text" class="form-control form-control-sm" name="nama_lengkap" id="nama_lengkap"/>
             </div>
             <div class="form-group">
-                <label for="nama_lengkap">Nama Akun</label>
-                <input type="text" class="form-control form-control-sm" name="nama_lengkap" id="nama_lengkap"/>
+                <label for="nama_akun">Nama Akun</label>
+                <input type="text" class="form-control form-control-sm" name="nama_akun" id="nama_akun"/>
             </div>
             <div class="form-group">
                 <label for="handphone">No. Handphone</label>
