@@ -1,5 +1,18 @@
 <?php include 'templates/header.php'; ?>
 
+<?php
+
+$user = "kelly";
+
+$user_infos;
+$user_q = $conn->query("SELECT `username`, `address`, `mobile_number` FROM `users` WHERE `username` = BINARY '$user'");
+while($row = $user_q->fetch_assoc()) {
+    $user_infos = $row;
+}
+$transactions = $conn->query("SELECT * FROM `tbl_order` WHERE `order_receiver_name` = BINARY '$user'");
+
+?>
+
 <div class="row trans-history">
     <div class="col">
         <div class="row user-info">
@@ -7,40 +20,40 @@
                 <tr>
                     <td>Nama</td>
                     <td>:</td>
-                    <td>Kelly Atmadja</td>
+                    <td><?php echo $user_infos['username'] ?></td>
                 </tr>
                 <tr>
                     <td>Alamat</td>
                     <td>:</td>
-                    <td>BSD Ujung Banget No. 121</td>
+                    <td><?php echo $user_infos['address'] ?></td>
                 </tr>
                 <tr>
                     <td>No. Telp</td>
                     <td>:</td>
-                    <td>0812 3456 xxxx</td>
+                    <td><?php echo $user_infos['mobile_number'] ?></td>
                 </tr>
             </table>
         </div>
-        <div class="row table-history mt-3">
-            <table class="table table-bordered datatables">
-                <thead>
-                    <tr>
-                        <td>No</td>
-                        <td>Tanggal Transaksi</td>
-                        <td>Jenis Barang</td>
-                        <td>Berat (Qty)</td>
-                        <td>Unit Price</td>
-                        <td>Amount (Rp)</td>
-                        <td>Lokasi MullBank</td>
-                    </tr>
-                </thead>
-                <tbody></tbody>
-            </table>
+        <div class="row table-transactions mt-3">
+            <div class="col">
+                <table class="table table-bordered datatables">
+                    <thead>
+                        <tr>
+                            <td>No</td>
+                            <td>Tanggal Transaksi</td>
+                            <td>Amount (Rp)</td>
+                            <td>Lokasi MullBank</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
 <hr>
-<div class="row invoice mt-3">
+<div class="row hidden invoice mt-3">
     <div class="col">
         <div class="row">
             <h2>Invoice</h2>
