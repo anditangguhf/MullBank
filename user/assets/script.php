@@ -72,11 +72,18 @@ jQuery(document).ready(function($) {
          appendModalContent(dummy);
 
          var str= $("#kritikSaran").val();
-         var idUser = "<?php echo $_SESSION['userid'];?>";
+         <?php
+            if(isset($_SESSION['userid'])){
+                ?>
+                var idUser="<?php echo $_SESSION['userid'];?>";
+                <?php
+            }
+         ?>
+         // var idUser = "<php if(isset($_SESSION['userid'])){echo $_SESSION['userid']};?>";
          console.log(str,idUser);
 
          $.ajax({
-             url:"assets/ajax.php",
+             url:"<?php echo constant("BASE_URL") ?>/ajax.php",
              type:'post',
              data:{
                  act: 'kritiksaran',
@@ -109,7 +116,7 @@ jQuery(document).ready(function($) {
                 data['password']=$("#passwordLogin").val();
 
                 // console.log(data);
-                doAjax('assets/ajax.php', data, function(response){
+                doAjax("<?php echo constant("BASE_URL") ?>/assets/ajax.php", data, function(response){
                     console.log(response);
                     if(response["status"]==-1){
                         alert(response["message"]);

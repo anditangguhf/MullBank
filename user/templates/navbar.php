@@ -1,37 +1,37 @@
 <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
     <ul class="navbar-nav mr-auto">
         <li class="nav-item">
-            <a class="navbar-brand navbarItems" href="/user" id="homeNavBar"><i class="fas fa-home"></i></a>
+            <a class="navbar-brand navbarItems" href="<?php echo constant("BASE_URL"); ?>" id="homeNavBar"><i class="fas fa-home"></i></a>
             <div class="d-none text-white mr-3" id="homeNavBarFont">Home</div>
         </li>
         <li class="nav-item">
-            <a class="navbar-brand navbarItems" href="/user/calculator.php" id="calcNavBar"><i class="fas fa-calculator"></i></a>
+            <a class="navbar-brand navbarItems" href="<?php echo constant("BASE_URL"); ?>/calculator.php" id="calcNavBar"><i class="fas fa-calculator"></i></a>
             <div class="d-none text-white mr-3" id="calcNavBarFont">Mull Kalkulator</div>
         </li>
-        <?php 
+        <?php
         if(isset($_SESSION["username"])){
             ?>
             <li class="nav-item">
-                <a class="navbar-brand navbarItems" href="/user/transaction.php" id="transNavBar"><i class="fas fa-money-check"></i></a>
+                <a class="navbar-brand navbarItems" href="<?php echo constant("BASE_URL"); ?>/transaction.php" id="transNavBar"><i class="fas fa-money-check"></i></a>
                 <div class="d-none text-white mr-3" id="transNavBarFont">Transaksi</div>
             </li>
-            
+
             <li class="nav-item">
-                <a class="navbar-brand navbarItems" href="/user/critics.php" id="ksNavBar"><i class="fas fa-star"></i></a>
+                <a class="navbar-brand navbarItems" href="<?php echo constant("BASE_URL"); ?>/critics.php" id="ksNavBar"><i class="fas fa-star"></i></a>
                 <div class="d-none text-white mr-3" id="ksNavBarFont">Kritik & Saran</div>
             </li>
             <?php
         }?>
         <li class="nav-item">
-            <a class="navbar-brand navbarItems" href="/user/about.php" id="aboutNavBar"><i class="fas fa-info-circle"></i></a>
+            <a class="navbar-brand navbarItems" href="<?php echo constant("BASE_URL"); ?>/about.php" id="aboutNavBar"><i class="fas fa-info-circle"></i></a>
             <div class="d-none text-white mr-3" id="aboutNavBarFont">Tentang Kami</div>
         </li>
         <li class="nav-item">
-            <a class="navbar-brand navbarItems" href="/user/locator.php" id="locNavBar"><i class="fas fa-map-marked-alt"></i></a>
+            <a class="navbar-brand navbarItems" href="<?php echo constant("BASE_URL"); ?>/locator.php" id="locNavBar"><i class="fas fa-map-marked-alt"></i></a>
             <div class="d-none text-white mr-3" id="locNavBarFont">Lokasi</div>
         </li>
     </ul>
-    
+
     <?php
     if(!isset($_SESSION["username"])){
         ?>
@@ -43,6 +43,6 @@
         </form>
         <?php
     }?>
-        
+
     </div>
 </nav>
