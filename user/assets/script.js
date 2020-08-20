@@ -85,8 +85,23 @@ jQuery(document).ready(function($) {
          const act = $this.attr("act");
          switch (act) {
              case 'login':
+                var data={};
 
-                 break;
+                data['act']='login';
+                data['username']=$("#usernameLogin").val();
+                data['password']=$("#passwordLogin").val();
+
+                // console.log(data);
+                doAjax('assets/ajax.php', data, function(response){
+                    console.log(response);
+                    if(response["status"]==-1){
+                        alert(response["message"]);
+                    }
+                    else{
+                        location.reload();
+                    }
+                })
+                break;
              case 'signup':
 
                  break;

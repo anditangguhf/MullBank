@@ -35,7 +35,6 @@
     <div class="modal-dialog modal-dialog-centered">
         
         <div class="modal-content">
-            <form action="<?php echo $_SERVER["REQUEST_URI"];?>function.php" method="POST">
             <div class="modal-header">
                 <h5 class="modal-title" id="modalLabel"></h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -44,7 +43,6 @@
             </div>
             <div class="modal-body"></div>
             <div class="modal-footer"></div>
-            </form>
         </div>
     </div>
 </div>
@@ -56,15 +54,15 @@
             <input type="hidden" name="act" value="login"/>
             <div class="form-group">
                 <label for="username">Username</label>
-                <input type="text" class="form-control form-control-sm" name="username" id="username"/>
+                <input type="text" class="form-control form-control-sm" name="username" id="usernameLogin"/>
             </div>
             <div class="form-group">
                 <label for="password">Password</label>
-                <input type="password" class="form-control form-control-sm" name="password" id="password"/>
+                <input type="password" class="form-control form-control-sm" name="password" id="passwordLogin"/>
             </div>
         </div>
         <div class="dummy-footer">
-            <input type="submit" class="btn btn-sm btn-primary proceed"/>
+            <button class="btn btn-sm btn-primary proceed" act="login">Login</button>
         </div>
 </div>
 
