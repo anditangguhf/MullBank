@@ -37,11 +37,6 @@ if(isset($_POST['act'])) {
 	        	$results = mysqli_query($conn, $query);
 
                 if (mysqli_num_rows($results) == 1) { // user found
-<<<<<<< HEAD
-
-=======
-                    
->>>>>>> master
                     // check if user is admin or user
 	        		$logged_in_user = mysqli_fetch_assoc($results);
 	        		$_SESSION['user'] = $logged_in_user;
@@ -62,14 +57,12 @@ if(isset($_POST['act'])) {
 	        }
             break;
 
-<<<<<<< HEAD
         case 'getInvoiceDetail':
             $oid = $_POST['order_id'];
             $invoice = $conn->query("SELECT * FROM tbl_order_item WHERE order_id='$oid'");
             echo json_encode($invoice->fetch_all(MYSQLI_ASSOC));
             break;
-=======
->>>>>>> master
+
         case 'signup':
             echo var_dump($_POST);
             $username=$_POST["username"];
@@ -90,22 +83,6 @@ if(isset($_POST['act'])) {
               echo "Error: " . $sql . "<br>" . $conn->error;
             }
             break;
-<<<<<<< HEAD
-=======
-
-        case 'logout':
-            session_destroy();
-            if(!isset($_SESSION["iduser"])){
-                $data["status"]=1;
-                echo json_encode($data);
-            }
-            else{
-                $data["status"]=-1;
-                $data["message"]="Error while destroying the session";
-                echo json_encode($data);
-            }
-            break;
->>>>>>> master
 
         case 'logout':
             session_destroy();
