@@ -62,6 +62,7 @@ if(isset($_POST['act'])) {
 	        }
             break;
 
+<<<<<<< HEAD
         case 'signup':
             echo var_dump($_POST);
             $username=$_POST["username"];
@@ -95,6 +96,8 @@ if(isset($_POST['act'])) {
                 echo json_encode($data);
             }
             break;
+=======
+>>>>>>> parent of 2e8f076... Finalize Transactions
 
         default:
             echo json_encode(['data' => 'No Data!']);
