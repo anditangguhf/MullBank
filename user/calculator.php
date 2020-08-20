@@ -5,11 +5,12 @@
         <div class="form-group">
             <select class="form-control form-control-sm" id="jenisBarang" name="jenisBarang">
                 <option value="None">-- Jenis Barang --</option>
-                <option>1</option>
-                <option>2</option>
-                <option>3</option>
-                <option>4</option>
-                <option>5</option>
+                <script>
+                    // doAjax(
+                    //     'assets/ajax.php',
+                    //
+                    // );
+                </script>
             </select>
             <label for="jenisBarang">Jenis Barang</label>
         </div>
