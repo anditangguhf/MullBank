@@ -165,6 +165,7 @@ jQuery(document).ready(function($) {
                     break;
                 }
                 var data={};
+<<<<<<< HEAD
 
                 data['act']='signup';
                 data['nama_lengkap']=$("#nama_lengkap").val();
@@ -174,6 +175,17 @@ jQuery(document).ready(function($) {
                 data['password']=$("#password").val();
                 data['address']=$("#alamat").val();
 
+=======
+
+                data['act']='signup';
+                data['nama_lengkap']=$("#nama_lengkap").val();
+                data['username']=$("#nama_akun").val();
+                data['mobile_number']=$("#handphone").val();
+                data['email']=$("#email").val();
+                data['password']=$("#password").val();
+                data['address']=$("#alamat").val();
+
+>>>>>>> master
                 // console.log(data);
                 doAjax("<?php echo constant("BASE_URL") ?>/assets/ajax.php", data, function(response){
                     console.log(response);
