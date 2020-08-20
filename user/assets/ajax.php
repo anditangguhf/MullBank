@@ -4,10 +4,6 @@ session_start();
 
 if(isset($_POST['act'])) {
     switch ($_POST['act']) {
-        case 'getJenisBarang':
-            echo json_encode(['data' => 'kontol']);
-            break;
-
         case 'kritiksaran':
             echo json_encode(['data' => $_POST['textbox']]);
             break;
@@ -41,7 +37,6 @@ if(isset($_POST['act'])) {
 	        	$results = mysqli_query($conn, $query);
 
                 if (mysqli_num_rows($results) == 1) { // user found
-                    
                     // check if user is admin or user
 	        		$logged_in_user = mysqli_fetch_assoc($results);
 	        		$_SESSION['user'] = $logged_in_user;
@@ -62,7 +57,12 @@ if(isset($_POST['act'])) {
 	        }
             break;
 
-<<<<<<< HEAD
+        case 'getInvoiceDetail':
+            $oid = $_POST['order_id'];
+            $invoice = $conn->query("SELECT * FROM tbl_order_item WHERE order_id='$oid'");
+            echo json_encode($invoice->fetch_all(MYSQLI_ASSOC));
+            break;
+
         case 'signup':
             echo var_dump($_POST);
             $username=$_POST["username"];
@@ -96,9 +96,7 @@ if(isset($_POST['act'])) {
                 echo json_encode($data);
             }
             break;
-=======
->>>>>>> parent of 2e8f076... Finalize Transactions
-
+            
         default:
             echo json_encode(['data' => 'No Data!']);
             break;

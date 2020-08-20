@@ -4,7 +4,7 @@ jQuery(document).ready(function($) {
      * Initialization scripts
      */
     _init = () => {
-        $(".datatables").DataTable();
+        $(".datatables").not(".dummy").DataTable();
         const pathname = window.location.pathname;
         console.log(pathname);
         if(pathname !== "/user") {
@@ -65,6 +65,39 @@ jQuery(document).ready(function($) {
      $(".sign-up").click(()=>{
          const dummy = $(".signup-dummy").clone().removeClass("hidden");
          appendModalContent(dummy);
+     });
+
+     $(".show-invoice").click((e)=>{
+         const dummy = $(".invoice-dummy").clone().removeClass("hidden");
+         appendModalContent(dummy);
+
+         const transactionData = JSON.parse($(e.target).attr("transaction-data"));
+         transactionData['act'] = 'getInvoiceDetail';
+         console.log(transactionData);
+
+         $(".modal #order_no").html(transactionData['order_no']);
+         $(".modal #order_date").html(transactionData['order_date']);
+
+         let table = $(".modal .invoice-table").DataTable();
+
+         doAjax(
+             '<?php echo constant("BASE_URL") ?>/assets/ajax.php',
+             transactionData,
+             (res) => {
+                let subTotal = 0.0;
+                res.forEach((item, idx)=>{
+                    table.row.add([
+                        idx+1,
+                        item['item_name'],
+                        item['order_item_quantity'],
+                        item['order_item_price'],
+                        item['order_item_final_amount']
+                    ]).draw();
+                    subTotal += parseFloat(item['order_item_final_amount']);
+                })
+                $(".modal .invoice-table #subTotal").text(subTotal.toFixed(2));
+             }
+         )
      });
 
      $(".thank-you").click(()=>{
@@ -132,7 +165,6 @@ jQuery(document).ready(function($) {
                     break;
                 }
                 var data={};
-
                 data['act']='signup';
                 data['nama_lengkap']=$("#nama_lengkap").val();
                 data['username']=$("#nama_akun").val();
@@ -140,7 +172,6 @@ jQuery(document).ready(function($) {
                 data['email']=$("#email").val();
                 data['password']=$("#password").val();
                 data['address']=$("#alamat").val();
-
                 // console.log(data);
                 doAjax("<?php echo constant("BASE_URL") ?>/assets/ajax.php", data, function(response){
                     console.log(response);
