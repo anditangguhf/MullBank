@@ -5,6 +5,11 @@
         <div class="form-group">
             <select class="form-control form-control-sm" id="jenisBarang" name="jenisBarang">
                 <option value="None">-- Jenis Barang --</option>
+                <?php
+
+                // $jb = $conn->query("SELECT * ")
+
+                ?>
             </select>
             <label for="jenisBarang">Jenis Barang</label>
         </div>
