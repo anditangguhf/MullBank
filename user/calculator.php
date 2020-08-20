@@ -1,16 +1,18 @@
-<?php include 'templates/header.php'; ?>
+<?php include 'templates/header.php';?>
 
 <div class="row mb-5">
     <div class="col">
         <div class="form-group">
             <select class="form-control form-control-sm" id="jenisBarang" name="jenisBarang">
                 <option value="None">-- Jenis Barang --</option>
-                <script>
-                    // doAjax(
-                    //     'assets/ajax.php',
-                    //
-                    // );
-                </script>
+                <?php
+                    $jb = $conn->query("SELECT * FROM jenis_barang");
+                    if ($jb->num_rows > 0) {
+                        while($row = $result->fetch_assoc()) {
+                            echo "id: " . $row["id"]. " - Name: " . $row["firstname"]. " " . $row["lastname"]. "<br>";
+                        }
+                    }
+                ?>
             </select>
             <label for="jenisBarang">Jenis Barang</label>
         </div>

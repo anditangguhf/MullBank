@@ -44,6 +44,8 @@ jQuery(document).ready(function($) {
         $.ajax({
             url: url,
             data: data,
+            type: 'post',
+            dataType: 'json',
             success: callback
         });
     }
@@ -104,6 +106,4 @@ jQuery(document).ready(function($) {
         $(navbarFont).removeClass("d-inline-block");
         $(navbarFont).addClass("d-none");
     })
-
-    
 })

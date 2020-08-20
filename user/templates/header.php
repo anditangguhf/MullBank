@@ -21,6 +21,8 @@
 
         <script src="/user/assets/script.js"></script>
         <link rel="stylesheet" href="/user/assets/style.css">
+
+        <?php include_once('../assets/db.php'); ?>
     </head>
     <body class="d-flex flex-column h-100">
         <?php include 'navbar.php'; ?>
