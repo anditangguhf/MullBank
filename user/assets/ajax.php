@@ -3,10 +3,6 @@ require_once("db.php");
 
 if(isset($_POST['act'])) {
     switch ($_POST['act']) {
-        case 'getJenisBarang':
-            echo json_encode(['data' => 'kontol']);
-            break;
-
         case 'kritiksaran':
             echo json_encode(['data' => $_POST['textbox']]);
             break;
@@ -61,7 +57,11 @@ if(isset($_POST['act'])) {
 	        }
             break;
 
-
+        case 'getInvoiceDetail':
+            $oid = $_POST['order_id'];
+            $invoice = $conn->query("SELECT * FROM tbl_order_item WHERE order_id='$oid'");
+            echo json_encode($invoice->fetch_all(MYSQLI_ASSOC));
+            break;
         default:
             echo json_encode(['data' => 'No Data!']);
             break;
