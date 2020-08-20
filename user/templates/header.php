@@ -1,4 +1,6 @@
-<?php error_reporting(E_ALL); ini_set('display_errors', 1); ?>
+<?php error_reporting(E_ALL); ini_set('display_errors', 1); 
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en" dir="ltr" class="h-100">
     <head>
