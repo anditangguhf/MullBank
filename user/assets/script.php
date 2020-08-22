@@ -25,6 +25,9 @@ jQuery(document).ready(function($) {
                 case "/user/transaction.php":
                     pageTitle.html("Transaction History");
                     break;
+                case "/user/bantuan.php":
+                    pageTitle.html("Bantuan");
+                    break;
             }
         }
     }
@@ -156,7 +159,7 @@ jQuery(document).ready(function($) {
                         alert(response["message"]);
                     }
                     else{
-                        location.reload();
+                        location.href="/user";
                     }
                 })
                 break;
@@ -175,13 +178,13 @@ jQuery(document).ready(function($) {
                 data['address']=$("#alamat").val();
                 // console.log(data);
                 doAjax("<?php echo constant("BASE_URL") ?>/assets/ajax.php", data, function(response){
-                    console.log(response);
-                    // if(response["status"]==-1){
-                    //     alert(response["message"]);
-                    // }
-                    // else{
-                    //     location.reload();
-                    // }
+                    // console.log(response);
+                    if(response["status"]==-1){
+                        alert(response["message"]);
+                    }
+                    else{
+                        location.href="/user";
+                    }
                 })
                  break;
 
@@ -200,7 +203,7 @@ jQuery(document).ready(function($) {
                 alert(response["message"]);
             }
             else{
-                location.reload();
+                location.href="/user";
             }
         })
      })
