@@ -116,10 +116,11 @@ jQuery(document).ready(function($) {
          console.log(str,idUser);
 
          $.ajax({
-             url:"<?php echo constant("BASE_URL") ?>/ajax.php",
+             url:"<?php echo constant("BASE_URL") ?>/assets/ajax.php",
              type:'post',
              data:{
                  act: 'kritiksaran',
+                 idUser: idUser,
                  textbox: str,
              },
              success:function(res){

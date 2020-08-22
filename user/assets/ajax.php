@@ -6,6 +6,16 @@ if(isset($_POST['act'])) {
     switch ($_POST['act']) {
         case 'kritiksaran':
             echo json_encode(['data' => $_POST['textbox']]);
+            $textbox = $_POST['textbox'];
+            $iduser = $_POST['idUser'];
+            $sql= "INSERT INTO kritik_saran (id_user,kritik) VALUES ('$iduser','$textbox')";
+            echo var_dump($sql);
+
+            if($conn ->query($sql) === TRUE){
+                echo "New record created successfully";
+            }else {
+              echo "Error: " . $sql . "<br>" . $conn->error;
+            }
             break;
 
         case 'login':
@@ -96,7 +106,7 @@ if(isset($_POST['act'])) {
                 echo json_encode($data);
             }
             break;
-            
+
         default:
             echo json_encode(['data' => 'No Data!']);
             break;
