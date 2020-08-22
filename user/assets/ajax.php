@@ -64,7 +64,7 @@ if(isset($_POST['act'])) {
             break;
 
         case 'signup':
-            echo var_dump($_POST);
+            // echo var_dump($_POST);
             $username=$_POST["username"];
             $nama_lengkap=$_POST["nama_lengkap"];
             $email=$_POST["email"];
@@ -76,11 +76,31 @@ if(isset($_POST['act'])) {
             $sql = "INSERT INTO users (username, nama_lengkap, email, user_type, password, mobile_number, address, id_locations)
             VALUES ('$username', '$nama_lengkap', '$email', '$user_type', '$password', '$mobile_number', '$address', '$id_location')";
 
-            echo var_dump($sql);
+            // echo var_dump($sql);
             if ($conn->query($sql) === TRUE) {
-              echo "New record created successfully";
+                $query = "SELECT * FROM users WHERE username='$username' AND password='$password' LIMIT 1";
+	        	$results = mysqli_query($conn, $query);
+
+                if (mysqli_num_rows($results) == 1) { // user found
+                    // check if user is admin or user
+	        		$logged_in_user = mysqli_fetch_assoc($results);
+	        		$_SESSION['user'] = $logged_in_user;
+	        		$_SESSION['success']  = "You are now logged in";
+	        		$_SESSION['username'] = $logged_in_user['username'];
+	        		$_SESSION['userid'] = $logged_in_user['id'];
+	        		$_SESSION['email'] = $logged_in_user['email'];
+	        		$_SESSION['mobile'] = $logged_in_user['mobile_number'];
+                    $_SESSION['address'] = $logged_in_user['address'];
+                }
+
+                $data["status"]=1;
+                echo json_encode($data);
+            //   echo "New record created successfully";
             } else {
-              echo "Error: " . $sql . "<br>" . $conn->error;
+                $data["status"]=-1;
+                $data["message"]="Failed to sign up, please try again later";
+                echo json_encode($data);
+            //   echo "Error: " . $sql . "<br>" . $conn->error;
             }
             break;
 
