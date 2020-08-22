@@ -60,8 +60,8 @@
         </div>
     </div>
 </div>
-<div class="invoice-dummy hidden" modal-size="modal-xl" no-footer="1">
-    <div class="dummy-title"><span>Mull Bank Invoice</span><button class="btn btn-primary ml-3"><i class="fas fa-file-pdf print-invoice"></i> Download Invoice PDF</btn></div>
+<div class="invoice-dummy hidden" modal-size="modal-xl">
+    <div class="dummy-title"><span>Mull Bank Invoice</span></div>
         <div class="dummy-body">
             <div class="row invoice-info">
                 <div class="col">
@@ -98,23 +98,33 @@
                         <tbody></tbody>
                         <tfoot>
                             <tr>
+                                <td class="text-right font-weight-bold" colspan="7">Total</td>
+                                <td class="text-right font-weight-bold" id="totalAfterTax"></td>
+                            </tr>
+                            <tr>
                                 <td colspan="7">Total Price Before Tax</td>
-                                <td id="totalBeforeTax"></td>
+                                <td class="text-right" id="totalBeforeTax"></td>
                             </tr>
                             <tr>
                                 <td colspan="7">Total Tax Price</td>
-                                <td id="totalTax"></td>
+                                <td class="text-right" id="totalTax"></td>
                             </tr>
                             <tr>
                                 <td colspan="7">Total Price After Tax</td>
-                                <td id="totalAfterTax"></td>
+                                <td class="text-right" id="totalAfterTax"></td>
                             </tr>
                         </tfoot>
                     </table>
                 </div>
             </div>
         </div>
-        <div class="dummy-footer"></div>
+        <div class="dummy-footer">
+            <form class="dl-invoice-form" action="<?php echo constant("BASE_URL") ?>/assets/ajax.php" method="post">
+                <input type="hidden" name="act" value="invoiceToPDF"/>
+                <input type="hidden" name="transactionData" value=""/>
+                <button type="submit" class="btn btn-primary ml-3 dl-invoice"><i class="fas fa-file-pdf"></i> Download Invoice PDF</button>
+            </form>
+        </div>
 </div>
 
 <?php include 'templates/footer.php'; ?>

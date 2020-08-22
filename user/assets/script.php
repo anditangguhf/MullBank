@@ -82,6 +82,7 @@ jQuery(document).ready(function($) {
          const transactionData = JSON.parse($(e.target).attr("transaction-data"));
          transactionData['act'] = 'getInvoiceDetail';
          console.log(transactionData);
+         $("#modal .dl-invoice-form input[name='transactionData']").val(JSON.stringify(transactionData));
 
          $(".modal #order_id").html(transactionData['order_id']);
          $(".modal #order_date").html(transactionData['order_date']);
@@ -118,8 +119,11 @@ jQuery(document).ready(function($) {
          )
      });
 
-     $("#modal").on("click", ".print-invoice", (e)=>{
-         console.log("Try Print Invoice");
+     $("#modal").on("click", ".dl-invoice", (e)=>{
+         e.preventDefault();
+         const parent = $(e.target).closest("#modal");
+         let form = parent.find(".dl-invoice-form");
+         form.submit();
      });
 
      $(".thank-you").click(()=>{

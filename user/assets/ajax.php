@@ -1,5 +1,9 @@
 <?php
 require_once("db.php");
+require_once('dompdf/autoload.inc.php');
+use Dompdf\Dompdf;
+$base_url = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https://":"http://") . $_SERVER['HTTP_HOST'] . "/user";
+
 session_start();
 
 if(isset($_POST['act'])) {
@@ -129,6 +133,56 @@ if(isset($_POST['act'])) {
             }
             break;
 
+        case 'invoiceToPDF':
+            $td = json_decode($_POST['transactionData'], true);
+            $oid = $td['order_id'];
+            $od = $td['order_date'];
+            $iq = $conn->query("SELECT * FROM tbl_order_item WHERE order_id='$oid'");
+            $invoice = $iq->fetch_all(MYSQLI_ASSOC);
+
+            $html = file_get_contents("pdf_templates/invoice.html");
+            $html = str_replace("{nama_lengkap}", $_SESSION['nama_lengkap'], $html);
+            $html = str_replace("{alamat}", $_SESSION['address'], $html);
+            $html = str_replace("{order_id}", $oid, $html);
+            $html = str_replace("{order_date}", $od, $html);
+
+            $tbl = "";
+            $totalBeforeTax = $totalTax = $totalAfterTax = 0.0;
+            foreach ($invoice as $i => $inv) {
+                $ct = $i+1;
+                $tbl.="<tr>"
+                ."<td>$ct</td>"
+                ."<td>".$inv['item_name']."</td>"
+                ."<td>".$inv['order_item_quantity']."</td>"
+                ."<td>".$inv['order_item_price']."</td>"
+                ."<td>".$inv['order_item_actual_amount']."</td>"
+                ."<td>".$inv['order_item_tax1_rate']."</td>"
+                ."<td>".$inv['order_item_tax1_amount']."</td>"
+                ."<td>".$inv['order_item_final_amount']."</td>"
+                ."</tr>";
+                $totalBeforeTax+=$inv['order_item_actual_amount'];
+                $totalTax+=$inv['order_item_tax1_amount'];
+                $totalAfterTax+=$inv['order_item_final_amount'];
+            }
+            $html = str_replace("{table_body}", $tbl, $html);
+            $html = str_replace("{totalBeforeTax}", number_format($totalBeforeTax, 2, '.', ''), $html);
+            $html = str_replace("{totalTax}", number_format($totalTax, 2, '.', ''), $html);
+            $html = str_replace("{totalAfterTax}", number_format($totalAfterTax, 2, '.', ''), $html);
+
+            // echo $html;
+            $dompdf = new Dompdf();
+            $dompdf->set_option('isHtml5ParserEnabled', true);
+            $dompdf->loadHtml($html);
+
+            // (Optional) Setup the paper size and orientation
+            $dompdf->setPaper('A4', 'portrait');
+
+            // Render the HTML as PDF
+            $dompdf->render();
+
+            // Output the generated PDF to Browser
+            $dompdf->stream("invoice_".$oid."_".$od.".pdf");
+            break;
         default:
             echo json_encode(['data' => 'No Data!']);
             break;
