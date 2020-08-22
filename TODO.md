@@ -6,7 +6,7 @@
 [] Locator list di bawah map
 
 ## ADMIN
-[] Invoice list sesuai dengan location dari admin
-[] Waktu create invoice, lookup nama dan alamat dari user, autofill location yang dimiliki admin sebagai location mullbank
-[] Trace waktu mau download pdf invoice, di tabel malah kosong
-[] Order number samain aja sama order id, tanggal langsung masukin today's date (lsg generate dan disable)
+[x] Invoice list sesuai dengan location dari admin
+[x] Waktu create invoice, lookup nama dan alamat dari user, autofill location yang dimiliki admin sebagai location mullbank
+[x] Trace waktu mau download pdf invoice, di tabel malah kosong
+[x] Order number samain aja sama order id, tanggal langsung masukin today's date (lsg generate dan disable)
