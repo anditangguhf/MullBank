@@ -25,24 +25,31 @@
 		function getLng() { return $this->lng; }
 
 		public function __construct() {
-			// $conn = new DbConnect;
-			// $this->conn = $conn->connect();
+			$serv = "localhost";
+			$unm = "root";
+			$pwd = "";
+			$db_name = "id14307394_mullbank";
+			$mysql = new mysqli($serv, $unm, $pwd, $db_name);
+			if ($mysql->connect_error) {
+			die("Connection failed: " . $mysql->connect_error);
+			}
+			$this->conn = $mysql;
 		}
 
 		public function getCollegesBlankLatLng() {
 			
-			require_once('assets/db.php');
+			// require_once('assets/db.php');
+			// echo var_dump($this->conn);
 			$sql = "SELECT * FROM $this->tableName WHERE lat IS NULL AND lng IS NULL";
-			$stmt = mysqli_query($conn, $sql);
+			$stmt = mysqli_query($this->conn, $sql);
 			// $stmt->execute();
 			return $stmt->fetch_all(MYSQLI_ASSOC);
 		}
 
 		public function getAllColleges() {
 			$sql = "SELECT * FROM $this->tableName";
-			$stmt = $this->conn->prepare($sql);
-			$stmt->execute();
-			return $stmt->fetchAll(PDO::FETCH_ASSOC);
+			$stmt = mysqli_query($this->conn,$sql);
+			return $stmt->fetch_all(MYSQLI_ASSOC);
 		}
 
 		public function updateCollegesWithLatLng() {
