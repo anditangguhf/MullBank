@@ -8,13 +8,18 @@
         <!-- Grid row -->
         <div class="row justify-content-center text-center">
             <!-- Grid column -->
-            <div class="col-sm-2 mb-md-0 mb-3"><a href="#"><i class="fa text-white fa-facebook-official"></i></a></div>
+            <div class="col-sm mb-md-0 mb-3">
+                <a href="#"><i class="mx-3 fa fa-lg text-white fa-facebook-official"></i></a>
+                <a href="#"><i class="mx-3 fa fa-lg text-white fa-instagram"></i></a>
+                <a href="#"><i class="mx-3 fab fa-lg text-white fa-line"></i></a>
+                <a href="#"><i class="mx-3 fa fa-lg text-white fa-youtube-play"></i></a>
+            </div>
             <!-- Grid column -->
-            <div class="col-sm-2 mb-md-0 mb-3"><a href="#"><i class="fa text-white fa-instagram"></i></a></div>
+            <!-- <div class="col-sm-2 mb-md-0 mb-3"><a href="#"><i class="fa fa-lg text-white fa-instagram"></i></a></div> -->
             <!-- Grid column -->
-            <div class="col-sm-2 mb-md-0 mb-3"><a href="#"><i class="fab text-white fa-line"></i></a></div>
+            <!-- <div class="col-sm-2 mb-md-0 mb-3"><a href="#"><i class="fab fa-lg text-white fa-line"></i></a></div> -->
             <!-- Grid column -->
-            <div class="col-sm-2 mb-md-0 mb-3"><a href="#"><i class="fa text-white fa-youtube-play"></i></a></div>
+            <!-- <div class="col-sm-2 mb-md-0 mb-3"><a href="#"><i class="fa fa-lg text-white fa-youtube-play"></i></a></div> -->
         </div>
     </div>
     <!-- Copyright -->
