@@ -7,7 +7,7 @@
                 <tr>
                     <td class="tb-ui-1">Nama</td>
                     <td class="tb-ui-2">:</td>
-                    <td class="tb-ui-3"><?php echo $_SESSION['username'] ?></td>
+                    <td class="tb-ui-3"><?php echo $_SESSION['nama_lengkap'] ?></td>
                 </tr>
                 <tr>
                     <td class="tb-ui-1">Alamat</td>
@@ -60,61 +60,54 @@
         </div>
     </div>
 </div>
-<div class="invoice-dummy hidden">
-    <div class="dummy-title"><span>Invoice</span></div>
+<div class="invoice-dummy hidden" modal-size="modal-xl" no-footer="1">
+    <div class="dummy-title"><span>Mull Bank Invoice</span><button class="btn btn-primary ml-3"><i class="fas fa-file-pdf print-invoice"></i> Download Invoice PDF</btn></div>
         <div class="dummy-body">
             <div class="row invoice-info">
                 <div class="col">
-                    <div class="row">
-                        <div class="col">
-                            <div id="namaMullbank">Nama Mullbank</div>
-                            <div id="alamatMullbank">Alamat Mullbank</div>
-                            <div id="telpMullbank">Telp Mullbank</div>
-                        </div>
-                    </div>
-                    <div class="row mt-2">
-                        <div class="col">
-                            <div class="border-bottom"><strong>BILL TO</strong></div>
-                            <div><?php echo $_SESSION['username'] ?></div>
-                            <div><?php echo $_SESSION['address'] ?></div>
-                            <div><?php echo $_SESSION['mobile'] ?></div>
-                            <div><?php echo $_SESSION['email'] ?></div>
-                        </div>
-                    </div>
+                    To,<br/>
+                    <strong>RECEIVER (BILL TO)</strong><br/>
+                    Name: <?php echo $_SESSION['nama_lengkap'] ?><br/>
+                    Billing Address: <?php echo $_SESSION['address'] ?>
                 </div>
                 <div class="col">
-                    <div class="row text-center">
-                        <div class="col">
-                            <div class="border-bottom"><strong>INVOICE NO</strong></div>
-                            <div id="order_no"></div>
-                            <div class="border-bottom mt-2"><strong>CUST ID</strong></div>
-                        </div>
-                        <div class="col">
-                            <div class="border-bottom"><strong>DATE</strong></div>
-                            <div id="order_date"></div>
-                            <div class="border-bottom mt-2"><strong>SALES NAME</strong></div>
-                        </div>
-                    </div>
+                    Reverse Charge<br/>
+                    Invoice No.: <span id="order_id"></span><br/>
+                    Invoice Date: <span id="order_date"></span><br/>
                 </div>
             </div>
             <hr>
             <div class="row">
                 <div class="col">
                     <table class="table table-bordered datatables dummy invoice-table" style="width:100%">
-                        <thead>
+                        <thead class="text-center">
                             <tr>
-                                <td>No</td>
-                                <td>Jenis Barang</td>
-                                <td>Berat (Qty)</td>
-                                <td>Unit Price</td>
-                                <td>Amount (Rp)</td>
+                                <td class="align-middle" rowspan="2">Sr. No</td>
+                                <td class="align-middle" rowspan="2">Rubbish Type</td>
+                                <td class="align-middle" rowspan="2">Weight (kg)</td>
+                                <td class="align-middle" rowspan="2">Price per Kg</td>
+                                <td class="align-middle" rowspan="2">Price before Tax</td>
+                                <td class="align-middle" colspan="2">Tax (%)</td>
+                                <td class="align-middle" rowspan="2">Total</td>
+                            </tr>
+                            <tr>
+                                <td>Rate</td>
+                                <td>Tax Price</td>
                             </tr>
                         </thead>
                         <tbody></tbody>
                         <tfoot>
                             <tr>
-                                <td colspan="4">Subtotal</td>
-                                <td id="subTotal"></td>
+                                <td colspan="7">Total Price Before Tax</td>
+                                <td id="totalBeforeTax"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Total Tax Price</td>
+                                <td id="totalTax"></td>
+                            </tr>
+                            <tr>
+                                <td colspan="7">Total Price After Tax</td>
+                                <td id="totalAfterTax"></td>
                             </tr>
                         </tfoot>
                     </table>
