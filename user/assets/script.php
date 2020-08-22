@@ -42,6 +42,11 @@ jQuery(document).ready(function($) {
         $(".modal-title").html(dummy.find(".dummy-title").removeClass("dummy-title"));
         $(".modal-body").append(dummy.find(".dummy-body").removeClass("dummy-body"));
         $(".modal-footer").append(dummy.find(".dummy-footer").removeClass("dummy-footer"));
+
+        const size = dummy.attr("modal-size");
+        console.log(size);
+        if(typeof size !== "undefined") $(".modal-dialog").addClass(size);
+        if(typeof dummy.attr("no-footer") !== "undefined" && dummy.attr("no-footer") === "1") $(".modal-footer").remove();
     }
 
     doAjax = (url, data, callback) => {
@@ -78,7 +83,7 @@ jQuery(document).ready(function($) {
          transactionData['act'] = 'getInvoiceDetail';
          console.log(transactionData);
 
-         $(".modal #order_no").html(transactionData['order_no']);
+         $(".modal #order_id").html(transactionData['order_id']);
          $(".modal #order_date").html(transactionData['order_date']);
 
          let table = $(".modal .invoice-table").DataTable();
@@ -87,20 +92,34 @@ jQuery(document).ready(function($) {
              '<?php echo constant("BASE_URL") ?>/assets/ajax.php',
              transactionData,
              (res) => {
-                let subTotal = 0.0;
+                 let totalBeforeTax = 0.0;
+                 let totalTax = 0.0;
+                 let totalAfterTax = 0.0;
                 res.forEach((item, idx)=>{
+                    console.log(item);
                     table.row.add([
                         idx+1,
                         item['item_name'],
                         item['order_item_quantity'],
                         item['order_item_price'],
+                        item['order_item_actual_amount'],
+                        item['order_item_tax1_rate'],
+                        item['order_item_tax1_amount'],
                         item['order_item_final_amount']
                     ]).draw();
-                    subTotal += parseFloat(item['order_item_final_amount']);
+                    totalBeforeTax += parseFloat(item['order_item_actual_amount']);
+                    totalTax += parseFloat(item['order_item_tax1_amount']);
+                    totalAfterTax += parseFloat(item['order_item_final_amount']);
                 })
-                $(".modal .invoice-table #subTotal").text(subTotal.toFixed(2));
+                $(".modal .invoice-table #totalBeforeTax").text(totalBeforeTax.toFixed(2));
+                $(".modal .invoice-table #totalTax").text(totalTax.toFixed(2));
+                $(".modal .invoice-table #totalAfterTax").text(totalAfterTax.toFixed(2));
              }
          )
+     });
+
+     $("#modal").on("click", ".print-invoice", (e)=>{
+         console.log("Try Print Invoice");
      });
 
      $(".thank-you").click(()=>{
@@ -197,7 +216,7 @@ jQuery(document).ready(function($) {
         var data={};
         data["act"]='logout';
 
-        doAjax('assets/ajax.php', data, function(response){
+        doAjax('<?php echo constant('BASE_URL') ?>/assets/ajax.php', data, function(response){
             console.log(response);
             if(response["status"]==-1){
                 alert(response["message"]);
