@@ -52,6 +52,7 @@ if(isset($_POST['act'])) {
 	        		$_SESSION['user'] = $logged_in_user;
 	        		$_SESSION['success']  = "You are now logged in";
 	        		$_SESSION['username'] = $logged_in_user['username'];
+	        		$_SESSION['nama_lengkap'] = $logged_in_user['nama_lengkap'];
 	        		$_SESSION['userid'] = $logged_in_user['id'];
 	        		$_SESSION['email'] = $logged_in_user['email'];
 	        		$_SESSION['mobile'] = $logged_in_user['mobile_number'];
@@ -97,6 +98,7 @@ if(isset($_POST['act'])) {
 	        		$_SESSION['user'] = $logged_in_user;
 	        		$_SESSION['success']  = "You are now logged in";
 	        		$_SESSION['username'] = $logged_in_user['username'];
+	        		$_SESSION['nama_lengkap'] = $logged_in_user['nama_lengkap'];
 	        		$_SESSION['userid'] = $logged_in_user['id'];
 	        		$_SESSION['email'] = $logged_in_user['email'];
 	        		$_SESSION['mobile'] = $logged_in_user['mobile_number'];
