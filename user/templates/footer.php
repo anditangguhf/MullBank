@@ -23,7 +23,7 @@
             <!-- Grid column -->
             <div class="col-md-3 mb-md-0 mb-3">Saran dan Pendapat</div>
             <!-- Grid column -->
-            <div class="col-md-3 mb-md-0 mb-3 border-left border-right">Bantuan</div>
+            <div class="col-md-3 mb-md-0 mb-3 border-left border-right"><a href="<?php echo constant("BASE_URL"); ?>/bantuan.php">Bantuan</a></div>
             <!-- Grid column -->
             <div class="col-md-3 mb-md-0 mb-3">Syarat Penggunaan</div>
         </div>

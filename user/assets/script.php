@@ -25,6 +25,9 @@ jQuery(document).ready(function($) {
                 case "/user/transaction.php":
                     pageTitle.html("Transaction History");
                     break;
+                case "/user/bantuan.php":
+                    pageTitle.html("Bantuan");
+                    break;
             }
         }
     }
