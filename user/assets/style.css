@@ -19,3 +19,15 @@
     transition:width 1s;
     transition-timing-function: ease;
 }
+
+.location-item table td { vertical-align: top; }
+.td-loc-item-1 {
+    width: 32%
+}
+.td-loc-item-2 {
+    width: 3%
+}
+.td-loc-item-3 {
+    width: 65%;
+    text-align: justify;
+}
