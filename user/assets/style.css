@@ -31,3 +31,6 @@
     width: 65%;
     text-align: justify;
 }
+.location-item .card-body {
+    text-align: center;
+}

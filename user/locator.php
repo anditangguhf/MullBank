@@ -82,10 +82,12 @@
 
         _processItemDetail = (item, col) => {
             let dummy = $(".dummy.location-item").clone().removeClass("hidden dummy").appendTo(col);
-            let table = dummy.find("table");
+            // let table = dummy.find("table");
+            let container = dummy.find(".card-body");
             for (var key in item) {
                 const val = item[key];
-                table.find("td[id='"+key+"']").html(val);
+                // table.find("td[id='"+key+"']").html(val);
+                container.find("span[id='"+key+"']").html(val);
             }
         }
 
@@ -110,9 +112,48 @@
         </div>
     </div>
     <div class="dummy location-item my-3 hidden">
-        <div class="card p-auto" style="height:400px;">
+        <div class="card" style="height:325px;">
             <div class="card-body">
-                <table style="width:100%">
+                <div class="row h-100">
+                    <div class="col my-auto px-5">
+                        <div class="row my-2">
+                            <div class="col">
+                                <span class="font-weight-bold" id="nama_bank_sampah"></span>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col">
+                                <span id="address"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Kelurahan: <span id="kelurahan"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Kecamatan: <span id="kecamatan"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Tipe: <span id="type"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Lat: <span id="lat"></span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col">
+                                Lng: <span id="lng"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- <table style="width:100%">
                     <tr>
                         <td class="td-loc-item-1">Nama Bank Sampah</td>
                         <td class="td-loc-item-2">:</td>
@@ -148,7 +189,7 @@
                         <td class="td-loc-item-2">:</td>
                         <td class="td-loc-item-3" id="lng"></td>
                     </tr>
-                </table>
+                </table> -->
             </div>
         </div>
     </div>
