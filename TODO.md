@@ -3,7 +3,7 @@
 ## USER
 - [x] Tampilan invoice sesuai sama pdf yg baru
 - [x] Invoice bisa didownload as PDF
-- [] Locator list di bawah map
+- [x] Locator list di bawah map
 
 ## ADMIN
 - [x] Invoice list sesuai dengan location dari admin
