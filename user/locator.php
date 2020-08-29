@@ -1,19 +1,30 @@
 <?php include 'templates/header.php'; ?>
-
-<script type="text/javascript" src="assets/googlemap.js"></script>
-
 <style>
-#map {
-    width: 80%;
-    height: 400px;
-    margin: 0 auto;
-    border: 5px solid blue;
-}
-#data, #allData {
-    display: none;
-}
+    .marker {
+        background-image: url('assets/img/marker.png');
+        background-size: cover;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    .mapboxgl-popup {
+        max-width: 200px;
+    }
+
+    .mapboxgl-popup-content {
+        text-align: center;
+        font-family: 'Open Sans', sans-serif;
+    }
 </style>
 
+<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
+<link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
+<?php
+$mq = $conn->query("SELECT * FROM locations");
+$locations = $mq->fetch_all(MYSQLI_ASSOC);
+?>
 <div class="row">
     <div class="col">
         Temukan lokasi MullBank terdekat dengan lokasi anda dan bergabunglah bersama kami
@@ -21,84 +32,118 @@
 </div>
 <div class="row google-map">
     <div class="col">
-
         <div class="container">
+            <div id='map' style="width:100%; height:600px"></div>
+            <script>
+                $(document).ready(($) => {
+                    mapboxgl.accessToken = 'pk.eyJ1IjoiYXRtYWRqYWtlbGx5IiwiYSI6ImNrZWVkcWcxdzB1cXAyeHAzcDc5Znl2cW8ifQ.SGEQ3wGvb_UInNKC8xFcTA';
+                    var map = new mapboxgl.Map({
+                        container: 'map',
+                        style: 'mapbox://styles/mapbox/streets-v11', // stylesheet location
+                        center: [106.894852, -6.11256], // starting position [lng, lat]
+                        zoom: 12 // starting zoom
+                    });
+                    const locations = <?php echo json_encode($locations) ?>;
+                    // console.log(locations);
 
-            <?php
-            require 'education.php';
-            $edu = new education;
-            $coll = $edu->getCollegesBlankLatLng();
-            $coll = json_encode($coll, true);
-            echo '<div id="data">' . $coll . '</div>';
+                    _processToGeoJSON = (locs) => {
+                        let geojson = {
+                            type: 'FeatureCollection',
+                            features: []
+                        }
+                        const features = locs.map((l) => {
+                            let out = {
+                                type: 'Feature',
+                                geometry: {
+                                    type: 'Point',
+                                    coordinates: [parseFloat(l.lng), parseFloat(l.lat)]
+                                },
+                                properties: {
+                                    title: l.nama_bank_sampah,
+                                    description: l.address
+                                }
+                            }
+                            return out;
+                        })
+                        geojson.features = features;
+                        return geojson;
+                    }
 
-            $allData = $edu->getAllColleges();
-            $allData = json_encode($allData, true);
-            echo '<div id="allData">' . $allData . '</div>';
-            ?>
+                    const geojson = _processToGeoJSON(locations);
+                    console.log(geojson);
 
-            <p align = middle>
-                <div id="map"></div>
-            </p>
+                    // add markers to map
+                    geojson.features.forEach(function(marker) {
+
+                        // create a HTML element for each feature
+                        var el = document.createElement('div');
+                        el.className = 'marker';
+
+                        // make a marker for each feature and add to the map
+                        new mapboxgl.Marker(el)
+                            .setLngLat(marker.geometry.coordinates)
+                            .setPopup(new mapboxgl.Popup({
+                                    offset: 25
+                                }) // add popups
+                                .setHTML('<p style="font-size:16px; font-weight: bold">' + marker.properties.title + '</p><p style="font-size:14px;">' + marker.properties.description + '</p>'))
+                            .addTo(map);
+                    });
+                });
+            </script>
         </div>
-
     </div>
 </div>
 <div class="row map-info">
-    <?php
-    $mq = $conn->query("SELECT * FROM locations");
-    $locations = $mq->fetch_all(MYSQLI_ASSOC);
-    ?>
     <script src="<?php echo constant('BASE_URL') ?>/assets/twbs.min.js"></script>
     <script>
-    $(document).ready(($)=>{
-        const locations = <?php echo json_encode($locations) ?>;
-        let pagedLocations = [];
-        let x = y = 0;
-        for (let i = 0; i < locations.length; i++) {
-            if(y==0) {
-                pagedLocations[x] = [];
-            }
-            if(y<10) {
-                pagedLocations[x].push(locations[i]);
-                y++;
-            }
-            if(y>=10) {
-                y = 0; x++;
-            }
-        }
-
-        processLocationItems = (locs, num) => {
-            $(".items-0, .items-5").empty();
-            let idx = num-1;
-            const items = locs[idx];
-            items.forEach((item,idx)=>{
-                if(idx < 5) {
-                    _processItemDetail(item, ".items-0");
-                } else {
-                    _processItemDetail(item, ".items-5");
+        $(document).ready(($) => {
+            const locations = <?php echo json_encode($locations) ?>;
+            let pagedLocations = [];
+            let x = y = 0;
+            for (let i = 0; i < locations.length; i++) {
+                if (y == 0) {
+                    pagedLocations[x] = [];
                 }
-            })
-        }
-
-        _processItemDetail = (item, col) => {
-            let dummy = $(".dummy.location-item").clone().removeClass("hidden dummy").appendTo(col);
-            // let table = dummy.find("table");
-            let container = dummy.find(".card-body");
-            for (var key in item) {
-                const val = item[key];
-                // table.find("td[id='"+key+"']").html(val);
-                container.find("span[id='"+key+"']").html(val);
+                if (y < 10) {
+                    pagedLocations[x].push(locations[i]);
+                    y++;
+                }
+                if (y >= 10) {
+                    y = 0;
+                    x++;
+                }
             }
-        }
 
-        $('#pagination').twbsPagination({
-            totalPages: pagedLocations.length,
-            visiblePages: 7,
-            onPageClick: function (e, num) {
-                processLocationItems(pagedLocations, num);
+            processLocationItems = (locs, num) => {
+                $(".items-0, .items-5").empty();
+                let idx = num - 1;
+                const items = locs[idx];
+                items.forEach((item, idx) => {
+                    if (idx < 5) {
+                        _processItemDetail(item, ".items-0");
+                    } else {
+                        _processItemDetail(item, ".items-5");
+                    }
+                })
             }
+
+            _processItemDetail = (item, col) => {
+                let dummy = $(".dummy.location-item").clone().removeClass("hidden dummy").appendTo(col);
+                let container = dummy.find(".card-body");
+                for (var key in item) {
+                    const val = item[key];
+                    container.find("span[id='" + key + "']").html(val);
+                }
+            }
+
+            $('#pagination').twbsPagination({
+                totalPages: pagedLocations.length,
+                visiblePages: 7,
+                onPageClick: function(e, num) {
+                    processLocationItems(pagedLocations, num);
+                }
+            });
         });
-    });
     </script>
     <div class="col">
         <div class="row location-items">
@@ -126,76 +171,13 @@
                                 <span id="address"></span>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col">
-                                Kelurahan: <span id="kelurahan"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                Kecamatan: <span id="kecamatan"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                Tipe: <span id="type"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                Lat: <span id="lat"></span>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col">
-                                Lng: <span id="lng"></span>
-                            </div>
-                        </div>
                     </div>
                 </div>
-                <!-- <table style="width:100%">
-                    <tr>
-                        <td class="td-loc-item-1">Nama Bank Sampah</td>
-                        <td class="td-loc-item-2">:</td>
-                        <td class="td-loc-item-3" id="nama_bank_sampah"></td>
-                    </tr>
-                    <tr>
-                        <td class="td-loc-item-1">Alamat</td>
-                        <td class="td-loc-item-2">:</td>
-                        <td class="td-loc-item-3" id="address"></td>
-                    </tr>
-                    <tr>
-                        <td class="td-loc-item-1">Kelurahan</td>
-                        <td class="td-loc-item-2">:</td>
-                        <td class="td-loc-item-3" id="kelurahan"></td>
-                    </tr>
-                    <tr>
-                        <td class="td-loc-item-1">Kecamatan</td>
-                        <td class="td-loc-item-2">:</td>
-                        <td class="td-loc-item-3" id="kecamatan"></td>
-                    </tr>
-                    <tr>
-                        <td class="td-loc-item-1">Tipe</td>
-                        <td class="td-loc-item-2">:</td>
-                        <td class="td-loc-item-3" id="type"></td>
-                    </tr>
-                    <tr>
-                        <td class="td-loc-item-1">Lat</td>
-                        <td class="td-loc-item-2">:</td>
-                        <td class="td-loc-item-3" id="lat"></td>
-                    </tr>
-                    <tr>
-                        <td class="td-loc-item-1">Lng</td>
-                        <td class="td-loc-item-2">:</td>
-                        <td class="td-loc-item-3" id="lng"></td>
-                    </tr>
-                </table> -->
             </div>
         </div>
     </div>
 </div>
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkaOqGZ8nJ-MW4oA3xOLr6tU-eu9Dms5s&callback=loadMap">
-</script>
+<!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkaOqGZ8nJ-MW4oA3xOLr6tU-eu9Dms5s&callback=loadMap"></script> -->
 
 <?php include 'templates/footer.php'; ?>
