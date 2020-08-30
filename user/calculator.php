@@ -24,11 +24,35 @@
 </div>
 
 <script>
-    $(document).ready(($)=>{
-        $(".calc-table").DataTable({
-            pageLength: 4
-        });
+$(document).ready(($)=>{
+    var totalValue = 0;
+
+    var table = $(".calc-table").DataTable({
+        pageLength:4
     })
+
+    $(".calc-count").click((e)=>{
+        let tbd = $(".calc-table tbody");
+        tbd.empty();
+        // tbd.empty();
+        const form = $(".calc-form");
+        if(form.find("#jenisBarang").val() === null) {
+            alert("Mohon pilih jenis barang terlebih dahulu!");
+        } else {
+            const jb = form.find("#jenisBarang");
+            const berat = form.find("#berat");
+            let calculate = parseInt(jb.val()) * parseInt(berat.val());
+            table.row.add([
+                jb.find("option:selected").text(),
+                jb.val(),
+                berat.val(),
+                calculate
+            ]).draw();
+            totalValue+=calculate;
+        }
+        tbd.find("#ct-subtotal").html(totalValue);
+    })
+})
 </script>
 
 <!-- table -->
@@ -43,14 +67,13 @@
                     <td>Harga Total</td>
                 </tr>
             </thead>
-            <tbody>
+            <tbody></tbody>
+            <tfoot>
                 <tr>
-                    <td id="ct-jenis">-</td>
-                    <td id="ct-harga">-</td>
-                    <td id="ct-berat">-</td>
-                    <td id="ct-total">-</td>
+                    <td colspan="3" class="text-right">Total</td>
+                    <td id="ct-subtotal"></td>
                 </tr>
-            </tbody>
+            </tfoot>
         </table>
     </div>
 </div>
