@@ -60,7 +60,11 @@ $locations = $mq->fetch_all(MYSQLI_ASSOC);
                                 },
                                 properties: {
                                     title: l.nama_bank_sampah,
-                                    description: l.address
+                                    description: l.address, 
+                                    info_jam_buka: l.jam_buka,
+                                    info_jam_tutup: l.jam_tutup, 
+                                    nama_contact:l.contact_person, 
+                                    no_contact:l.no_contact_person
                                 }
                             }
                             return out;
@@ -70,7 +74,7 @@ $locations = $mq->fetch_all(MYSQLI_ASSOC);
                     }
 
                     const geojson = _processToGeoJSON(locations);
-                    console.log(geojson);
+                    // console.log(geojson);
 
                     // add markers to map
                     geojson.features.forEach(function(marker) {
@@ -85,7 +89,7 @@ $locations = $mq->fetch_all(MYSQLI_ASSOC);
                             .setPopup(new mapboxgl.Popup({
                                     offset: 25
                                 }) // add popups
-                                .setHTML('<p style="font-size:16px; font-weight: bold">' + marker.properties.title + '</p><p style="font-size:14px;">' + marker.properties.description + '</p>'))
+                                .setHTML('<p style="font-size:16px; font-weight: bold">' + marker.properties.title + '</p><p style="font-size:14px;">' + marker.properties.description + '</p><p style="font-size:14px;">Jam buka: ' + marker.properties.info_jam_buka + ' - ' +marker.properties.info_jam_tutup+ '</p><p style="font-size:16px">' + marker.properties.nama_contact + '</p><p style="font-size:16px">' + marker.properties.no_contact + '</p>'))
                             .addTo(map);
                     });
                 });
@@ -169,6 +173,21 @@ $locations = $mq->fetch_all(MYSQLI_ASSOC);
                         <div class="row my-2">
                             <div class="col">
                                 <span id="address"></span>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col font-weight-bold">
+                                Jam buka: <span id="jam_buka"></span> - <span id="jam_tutup"></span>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col">
+                                <span class="font-weight-bold" id="contact_person"></span>
+                            </div>
+                        </div>
+                        <div class="row my-2">
+                            <div class="col">
+                                <span id="no_contact_person"></span>
                             </div>
                         </div>
                     </div>
